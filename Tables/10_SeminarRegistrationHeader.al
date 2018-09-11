@@ -260,6 +260,11 @@ table 123456710 "CSD Seminar Reg. Header"
         field(28; "Posting No."; Code[20])
         {
         }
+        field(40; "No. Printed"; Integer)
+        {
+            Caption = 'No. Printed';
+            Editable = false;
+        }
 
     }
 
@@ -292,8 +297,8 @@ table 123456710 "CSD Seminar Reg. Header"
 
     trigger OnDelete();
     begin
-        if (CurrFieldNo>0) then
-          TestField(status,Status::Canceled);
+        if(CurrFieldNo > 0) then
+            TestField(status, Status::Canceled);
         SeminarRegLine.RESET;
         SeminarRegLine.SETRANGE("Document No.", "No.");
         SeminarRegLine.SETRANGE(Registered, true);
@@ -327,9 +332,9 @@ table 123456710 "CSD Seminar Reg. Header"
         InitRecord();
 
         // >> Lab 8 1-1
-         if GetFilter("Seminar No.") <>'' then 
-           if GetRangeMin("Seminar No.") = GetRangeMax("Seminar No.") then 
-             Validate("Seminar No.",GetRangeMin("Seminar No.")); 
+        if GetFilter("Seminar No.") <> '' then
+            if GetRangeMin("Seminar No.") = GetRangeMax("Seminar No.") then
+                Validate("Seminar No.", GetRangeMin("Seminar No."));
         // << Lab 8 1-1
     end;
 
